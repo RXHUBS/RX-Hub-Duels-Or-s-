@@ -1,0 +1,31 @@
+-- RX DUELS FULL FIX
+
+loadstring(game:HttpGet("https://raw.githubusercontent.com/mallu937/orcs-duel/refs/heads/main/.lua"))()
+
+task.spawn(function()
+
+    local function fix(v)
+
+        if v:IsA("TextLabel") or v:IsA("TextButton") then
+            if v.Text then
+
+                local t = string.lower(v.Text)
+
+                if string.find(t, "or") and string.find(t, "duel") then
+                    v.Text = "RX Duels"
+                end
+
+            end
+        end
+
+    end
+
+    -- SÜREKLİ OVERRIDE (reset kırsın diye)
+    while true do
+        for _,v in ipairs(game:GetDescendants()) do
+            pcall(fix, v)
+        end
+        task.wait(0.1)
+    end
+
+end)
